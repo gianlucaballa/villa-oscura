@@ -18,11 +18,14 @@ Health: start with 3. If 0, the game is over.
 Actions
 In order to perform an action, an invisible dice is rolled.
 The result of this roll + your specific Trait for that action
-must beat an established difficulty for that action.
+must beat an established difficulty.
 
 Example: Breaking a window is based on Body. 
-The dice roll is 3. The difficulty for this action is 5.
-If you have at least 2 in Body, you succeed (3 + 2 >= 5).
+Let's imagine that the dice roll is 3. 
+The difficulty for this action is 5.
+If you have at least 2 in Body, you succeed in the action 
+(3 + 2 >= 5).
+
 The game does not allow re-rolls so be careful!
 Almost all actions are irreversible.
 
@@ -169,7 +172,6 @@ print()
 print('''Congratulations! 
 These are your Traits
 ''')
-print()
 for trait, value in traits_dic.items():
 	print(trait + ':', value)
 	
