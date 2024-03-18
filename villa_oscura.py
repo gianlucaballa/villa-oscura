@@ -10,18 +10,18 @@ There is no saving. Complete the adventure in one go.
 Close the terminal to exit the game.
 
 Traits (max 3 points each)
-Body: it measures your resistance and strength.
-Spirit: it measures your willpower and wisdom.
-Luck: it measures how easily you escape dangers.
-Health: start with 3. If 0, the game is over.
+- Body: it measures your resistance and strength.
+- Spirit: it measures your willpower and wisdom.
+- Luck: it measures how easily you escape dangers.
+- Health: start with 3. If 0, the game is over.
 
 Actions
-In order to perform an action, an invisible dice is rolled.
+In order to perform an action, an invisible die is rolled.
 The result of this roll + your specific Trait for that action
 must beat an established difficulty.
 
 Example: Breaking a window is based on Body. 
-Let's imagine that the dice roll is 3. 
+Let's imagine that the die roll is 3. 
 The difficulty for this action is 5.
 If you have at least 2 in Body, you succeed in the action 
 (3 + 2 >= 5).
@@ -30,16 +30,17 @@ The game does not allow re-rolls so be careful!
 Almost all actions are irreversible.
 
 Available actions 
-(associate these with environments and objects
+(associate these with environments and objects:
 for example, WALK FOREST) 
 
 WALK: to approach objects and places.
-INTERACT: to use objects.
+USE: to use objects.
 FORCE: to force a physical action.
 EXAMINE: to investigate.
-INVENTORY: to check what you carry in your backpack.
-INSTRUCTIONS: a sum up of the game's rules.
-TRAITS: to check your current Traits.
+ITEM: to check what you carry in your backpack.
+INS: a sum up of the game's rules.
+TRAIT: to check your current Traits.
+(cap is not necessary)
 -----------------------------------------------
 '''
 
@@ -71,28 +72,31 @@ print('''
 -----------------------------------------------
 Welcome to Villa Oscura! A game made in Python.
 
-Type INSTRUCTIONS to learn how to play.
+Type INS to learn how to play.
+Type TRAIT to see your Traits.
+Type ITEM to check your inventory.
+(cap is not necessary)
 -----------------------------------------------
 ''')
 
 # Introduction loop.
 while True:
 	introduction_input = input('Ready to start? ').upper()
-	if introduction_input == 'INSTRUCTIONS':
+	if introduction_input == 'INS':
 		print(INSTRUCTIONS)
-	elif introduction_input == 'TRAITS':
+	elif introduction_input == 'TRAIT':
 		print()
 		# Print dictionary in the same order as it was defined.
 		for trait, value in traits_dic.items():
 			print(trait + ':', value)
 		print()
-	elif introduction_input == 'INVENTORY':
+	elif introduction_input == 'ITEM':
 		print()
 		print('Inventory:')
 		for item in inventory_set:
 			print('-', item)
 		print()
-	elif introduction_input != 'YES' and introduction_input != 'Y':
+	elif introduction_input != 'YES' and introduction_input != 'Y' and introduction_input != 'YEAH':
 		print('Invalid input.')
 		continue
 	else:
@@ -141,26 +145,27 @@ while True:
 		continue
 	if Body_starting + Spirit_starting + Luck_starting != 4:
 		print()
+		print(Body_starting + Spirit_starting + Luck_starting, 'points spent.')
 		print('You must spend 4 points.')
 		print()
 		continue
 	print()
 	while True:
-		instructions_traits_points = input('Type INSTRUCTIONS for help or press a button. ').upper()
-		if instructions_traits_points == 'INSTRUCTIONS':
+		instructions_traits_points = input('Success! Type INS for help or press a button. ').upper()
+		if instructions_traits_points == 'INS':
 			print(INSTRUCTIONS)
 			break
 		else:
 			print()
 			break
 	question_traits_points = input('Confirm points? ').upper()
-	if question_traits_points == 'YES' or question_traits_points == 'Y':
+	if question_traits_points == 'YES' or question_traits_points == 'Y' or question_traits_points == 'YEAH':
 		break
 	elif question_traits_points == 'NO' or question_traits_points == 'N':
 		print()
 		continue
 	else:
-		print('Invalid input. Please, spend 4 points and confirm.')
+		print('Invalid input. Please, re-spend 4 points and confirm.')
 		continue
 
 # Updated Traits.
@@ -169,12 +174,15 @@ traits_dic['Spirit'] = Spirit_starting
 traits_dic['Luck'] = Luck_starting
 
 print()
-print('''Congratulations! 
+print('''
+-----------------------------------------------
+Congratulations! 
 These are your Traits
 ''')
 for trait, value in traits_dic.items():
 	print(trait + ':', value)
-	
+print()
+
 	
 	
 
