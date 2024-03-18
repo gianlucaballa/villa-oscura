@@ -8,4 +8,4 @@ WORKDIR /app
 COPY . .
 
 # Run the game when the container starts.
-CMD ["python", "villa-oscura.py"]
+CMD ["python", "villa_oscura.py"]
