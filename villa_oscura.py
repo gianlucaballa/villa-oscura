@@ -36,7 +36,7 @@ for example, WALK FOREST)
 WALK: to approach objects and places.
 USE: to use objects.
 FORCE: to force a physical action.
-EXAMINE: to investigate.
+EXAMINE: to investigate. Add AROUND for surroundings.
 ITEM: to check what you carry in your backpack.
 INS: a sum up of the game's rules.
 TRAIT: to check your current Traits.
@@ -114,7 +114,7 @@ No sound comes from it. You're alone.
 	  
 But, before you start exploring it...
 	  
-Spend 4 points in between Body, Spirit and Luck.
+Spend 4 points in between Body, Spirit and Luck!
 -----------------------------------------------
 ''')
 
@@ -177,11 +177,57 @@ print()
 print('''
 -----------------------------------------------
 Congratulations! 
-These are your Traits
+These are your Traits:
 ''')
 for trait, value in traits_dic.items():
-	print(trait + ':', value)
+	print(trait + '->', value)
 print()
+print('Check them with TRAIT.')
+
+# Block 1: entering the house.
+print('''
+-----------------------------------------------
+	   
+You are in front of the entrance door: dark rotten wood, sturdy. No signs.
+No one is around. The sun has disappeared behing the house's sharp roof.
+
+Your turn...
+''')
+
+while True:
+	entrance_input = input('> ').upper()
+	if entrance_input == 'INS':
+		print(INSTRUCTIONS)
+	elif entrance_input == 'TRAIT':
+		print()
+		# Print dictionary in the same order as it was defined.
+		for trait, value in traits_dic.items():
+			print(trait + ':', value)
+		print()
+	elif entrance_input == 'ITEM':
+		print()
+		print('Inventory:')
+		for item in inventory_set:
+			print('-', item)
+		print()
+	elif 'EXAMINE' in entrance_input and 'DOOR' in entrance_input:
+		print('''The door's hinges are rusty and worn out...''')
+	elif entrance_input == 'EXAMINE':
+		print('''What to examine? Remember, type action + object/environment''')
+	elif 'EXAMINE' in entrance_input and 'FLASHLIGHT' in entrance_input:
+		print('''It's a common flashlight. No use here.''')
+	elif 'EXAMINE' in entrance_input and 'HINGES' in entrance_input:
+		print('''With a good push they might fall off...''')
+	elif 'EXAMINE' in entrance_input and 'AROUND' in entrance_input:
+		print('''On your left, there is a small square window with cracked glass.''')
+	elif entrance_input == 'USE':
+		print('''Use what? Remember, type action + object/environment''')
+	elif 'USE' in entrance_input and 'FLASHLIGHT' in entrance_input:
+		print('''No point in doing that.''')
+	elif 'USE' in entrance_input and 'DOOR' in entrance_input:
+		print('''You try to push the door open but it's locked.''')
+	else:
+		break
 
 	
 	
