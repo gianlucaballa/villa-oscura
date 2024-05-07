@@ -1,5 +1,16 @@
 # To interact with the interpreter (e.g.: exit game).
 import sys
+# For dice rolls (and countdowns).
+import random
+import time
+
+# Roll dice function.
+def roll_dice():
+	for i in range(3, 0, -1):
+		print('Rolling in', i, '...')
+		time.sleep(2)
+	print()
+	return random.randint(1, 4)
 
 # Instructions that players can access throughout the game.
 instructions = '''
@@ -17,7 +28,7 @@ Traits (max 3 points each)
 
 Actions
 In order to perform an action, an invisible die is rolled.
-The result of this roll + your specific Trait for that action
+The result of this roll + your specific Trait
 must beat an established difficulty.
 
 Example: Breaking a window is based on Body. 
@@ -27,7 +38,8 @@ If you have at least 2 in Body, you succeed in the action
 (3 + 2 >= 5).
 
 The game does not allow re-rolls so be careful!
-Almost all actions are irreversible.
+Many actions are irreversible.
+If your Health goes to 0, the game is over.
 
 Available actions 
 (associate these with environments and objects:
@@ -182,7 +194,7 @@ Congratulations!
 These are your Traits:
 ''')
 for trait, value in traits_dic.items():
-	print(trait + '->', value)
+	print(trait, '->', value)
 print()
 print('Check them with TRAIT.')
 
@@ -257,8 +269,27 @@ while True:
 You might try to pass through it, if those pointy teeth do not bother you!''')
 		print()	
 	elif 'FORCE' in entrance_input and 'DOOR' in entrance_input:
-		qst_force_entrance = input('''Have you considered all? Are you sure about this? ''')	
+		qst_force_entrance = input('''Have you considered all? Are you sure about this? ''').upper()	
 		if qst_force_entrance == 'YES' or qst_force_entrance == 'Y' or qst_force_entrance == 'YEAH':
+			print()
+			print('BODY ACTION!')
+			result = roll_dice()
+			print('You rolled: ', result)
+			action_result = result + traits_dic['Body']
+			print('Total: ', action_result)
+			if action_result >= 5:
+				print(
+'''BANG!
+A shoulder push and you unhinge the door. 
+The door falls to the ground with a racket, raising dust to the air.
+You look around. Luckily, nobody heard that.
+
+A bit of an unconventional approach to problems, but you're in. 
+You leap over the door on the floor and enter the mansion.'''
+)
+				print()
+		
+
 			break
 		else:
 			continue
