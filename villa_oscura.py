@@ -171,10 +171,10 @@ while True:
 		else:
 			print()
 			break
-	question_traits_points = input('Confirm points? ').upper()
-	if question_traits_points == 'YES' or question_traits_points == 'Y' or question_traits_points == 'YEAH':
+	qst_traits_points = input('Confirm points? ').upper()
+	if qst_traits_points == 'YES' or qst_traits_points == 'Y' or qst_traits_points == 'YEAH':
 		break
-	elif question_traits_points == 'NO' or question_traits_points == 'N':
+	elif qst_traits_points == 'NO' or qst_traits_points == 'N':
 		print()
 		continue
 	else:
@@ -199,7 +199,7 @@ print()
 print('Check them with TRAIT.')
 
 # Block 1: entering the house.
-description_entrance = ('''
+desc_entrance = ('''
 -----------------------------------------------
 	   
 You are in front of the entrance door: 
@@ -214,7 +214,7 @@ There is still light though.
 Your turn...
 ''')
 
-print(description_entrance)
+print(desc_entrance)
 
 while True:
 	entrance_input = input('> ').upper()
@@ -222,7 +222,7 @@ while True:
 	if entrance_input == 'INS':
 		print(instructions)
 	elif entrance_input == 'DESC':
-		print(description_entrance)
+		print(desc_entrance)
 	elif entrance_input == 'TRAIT':
 		print()
 		for trait, value in traits_dic.items():
@@ -297,9 +297,14 @@ You leap over the door on the floor and enter the mansion.'''
 	
 	else:
 		print('''Invalid input.''')
+		print()
 		continue
 
-	
+# Block 2: the dark corridor.
+desc_corridor = ('''
+''')
+
+print(desc_corridor)
 	
 
 
